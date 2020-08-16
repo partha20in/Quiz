@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.cloud.skel.exception.ResourceUnavailableException;
-import com.quiz.cloud.skel.model.AuthenticatedUser;
 import com.quiz.cloud.skel.model.CorrectAnswer;
 import com.quiz.cloud.skel.model.User;
 import com.quiz.cloud.skel.repository.UserRepository;
@@ -48,41 +47,12 @@ import io.swagger.annotations.Api;
 @Api()
 public class UserController {
 
-	//public static final String ROOT_MAPPING = "/api/users";
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
-//	@Autowired
-//	private RegistrationService registrationService;
-//	
-//	@Autowired
-//	private UserManagementService userManagementService;
-
+	
 	@Autowired
 	private UserService userService;
 
-//	@Autowired
-//	private QuizService quizService;
 
-	
-//	@POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-//	@PreAuthorize("permitAll")
-//	@Path("/UserRegistration")
-//	public Response<User> signUp(@RequestBody User user) {
-//
-//		//RestVerifier.verifyModelResult(result);
-//		User newUser = userService.saveUser(user);
-//
-//		//if (registrationService.isRegistrationCompleted(newUser)) {
-//			return Response.created();
-////		} else {
-////			return new ResponseEntity<User>(newUser, HttpStatus.OK);
-////		}
-//	}
-
-	
-	
 
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -93,25 +63,7 @@ public class UserController {
 		return userService.findAllUser();
 	}
 
-//	@RequestMapping(value = "/{user_id}/quizzes", method = RequestMethod.GET)
-//	@PreAuthorize("permitAll")
-//	@ResponseStatus(HttpStatus.OK)
-//	public Page<Quiz> getQuizzesByUser(Pageable pageable, @PathVariable Long user_id) {
-//		logger.debug("Requested page " + pageable.getPageNumber() + " from user " + user_id);
-//		
-//		User user = userService.find(user_id);
-//		return quizService.findQuizzesByUser(user, pageable);
-//	}
-	
-//	@RequestMapping(value = "/myQuizzes", method = RequestMethod.GET)
-//	@PreAuthorize("isAuthenticated()")
-//	@ResponseStatus(HttpStatus.OK)
-//	public Page<Quiz> getQuizzesByCurrentUser(@AuthenticationPrincipal AuthenticatedUser authenticatedUser,
-//			Pageable pageable) {
-//		logger.debug("Requested page " + pageable.getPageNumber() + " from user " + authenticatedUser.getUsername());
-//		
-//		return getQuizzesByUser(pageable, authenticatedUser.getId());
-//	}
+
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -187,42 +139,12 @@ public class UserController {
 		return Response.WRONG_ANSWER();
 		}
 		
-//	@PUT
-//    @Produces(MediaType.APPLICATION_JSON)
-//	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-//	@Path("/insertNewUserQuiz")
-//	public Response<User> insertNewUserQuiz(@RequestBody User us) {
-//
-//		//RestVerifier.verifyModelResult(result);
-//		User usr = userService.saveUser(us);
-//
-//		if (usr!=null) {
-//			return Response.ok();
-//		} else {
-//			return Response.badRequest();
-//		}
-//	}
+
 
 	
 	
 	
-	@RequestMapping(value = "/logoutUser")
-	@PreAuthorize("permitAll()")
-	@ResponseStatus(HttpStatus.OK)
-	public void logout() {
-		// Dummy endpoint to point Spring Security to
-		logger.debug("Logged out");
-	}
 	
-//	@RequestMapping(value = "/forgotPassword")
-//	@PreAuthorize("permitAll")
-//	@ResponseStatus(HttpStatus.OK)
-//	public User forgotPassword(String email) {
-//		User user = userService.findByEmail(email);
-//		userManagementService.resendPassword(user);
-//		
-//		return user;
-//	}
 	
 
 }

@@ -4,6 +4,7 @@ package com.quiz.cloud.skel.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.quiz.cloud.skel.exception.ResourceUnavailableException;
 import com.quiz.cloud.skel.exception.UserAlreadyExistsException;
 import com.quiz.cloud.skel.model.Answer;
-import com.quiz.cloud.skel.model.AuthenticatedUser;
 import com.quiz.cloud.skel.model.CorrectAnswer;
 import com.quiz.cloud.skel.model.Question;
 import com.quiz.cloud.skel.model.Quiz;
@@ -52,44 +52,17 @@ public class UserService {
 	@Autowired
 	private ResultRepository resultRepo;
 	
-	private PasswordEncoder passwordEncoder;
-	
 	private static int score;
 	
 	private static int hit;
 
-//	@Autowired
-//	public UserServiceImpl(UserRepository userRepository,
-//			PasswordEncoder passwordEncoder) {
-//		this.userRepository = userRepository;
-//		this.passwordEncoder = passwordEncoder;
-//	}
 
-//	public User saveUser(User user) throws UserAlreadyExistsException {
-//		if (userRepository.findByEmail(user.getEmail()) != null) {
-//			logger.error( user.getEmail() + " is already registered");
-//			throw new UserAlreadyExistsException(user.getEmail() + " is already in use");
-//		}
-//
-//		user.setCreatedDate(new Date() );
-//		Question qs=new Question();
-//		qs.getOrder();
-//		Answer as=new Answer();
-//		Quiz q=new Quiz();
-//		q.setDescription(user.getQuiz().getDescription());
-//		q.setName(user.getQuiz().getName());
-//		q.setQuestions(questions);
-//		
-//		User u= userRepository.save(user);
-//		
-//		
-//		return u;
-//	}
+	
 
 //	@Override
 //	/*
-//	 * Look up by both Email and Username. Throw exception if it wasn't in
-//	 * either. TODO: Join Username and Email into one JPQL
+//	 * Look up by Username. Throw exception if it wasn't in
+//	 * 
 //	 */
 	public User loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = null;
@@ -131,7 +104,7 @@ public class UserService {
 		for(CorrectAnswer a:correct) {
 		if(a.getQuestion().getOrder()==order){
 			
-			if(a.getCorrect().equalsIgnoreCase(answer)&& score<=10 && hit<=10) {
+			if(a.getCorrect().equalsIgnoreCase(answer)&& score<=5 && hit<=5) {
 				
 				score++;
 				Result r=new Result(Username,score,new Date(),timeLifeline);
@@ -147,35 +120,7 @@ public class UserService {
 	}
 		
 
-//	@Override
-//	public User find(Long id) throws ResourceUnavailableException {
-//		User user = userRepository.findOne(id);
-//
-//		if (user == null) {
-//			logger.error("The user " + id + " can't be found");
-//			throw new ResourceUnavailableException("User " + id + " not found.");
-//		}
-//
-//		return user;
-//	}
-//
-//	@Override
-//	public void delete(Long user_id) throws UnauthorizedActionException, ResourceUnavailableException {
-//		User userToDelete = find(user_id);
-//
-//		userRepository.delete(userToDelete);
-//	}
 
-//	public User setRegistrationCompleted(User user) {
-//		User u=new User();
-//		u.setEnabled(true);
-//		u.setEmail(user.getEmail());
-//		u.setId(user.getId());
-//		u.setUsername(user.getUsername());
-//		u.setPassword(user.getPassword());
-//		logger.info("In setRegistrationCompleted :"+user.isEnabled());
-//		return userRepository.save(u);
-//	}
 	
 	public User findUserById(Long Id) {
 		return userRepository.findBymId(Id);
@@ -185,27 +130,6 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-//	@Override
-//	public boolean isRegistrationCompleted(User user) {
-//		return user.getEnabled();
-//	}
-//
-//	@Override
-//	public User findByEmail(String email) throws ResourceUnavailableException {
-//		User user = userRepository.findByEmail(email);
-//
-//		if (user == null) {
-//			logger.error("The mail " + email + " can't be found");
-//			throw new ResourceUnavailableException("The mail " + email + " can't be found");
-//		}
-//
-//		return user;
-//	}
-//
-//	@Override
-//	public User updatePassword(User user, String password) throws ResourceUnavailableException {
-//		user.setPassword(passwordEncoder.encode(password));
-//		return userRepository.save(user);
-//	}
+
 
 }

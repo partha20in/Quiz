@@ -89,12 +89,7 @@ import javax.persistence.Table;
 					+ playDateTime + "]";
 		}
 	    
-		
-	    
-	      
-	    
-
-		
+			
 		
 	    
 	}

@@ -125,11 +125,6 @@ public class CorrectAnswer extends AbstractEntity implements Serializable {
 				+ createdDate + "]";
 	}
 	
-	
-	
-
-	
-	
 
 	
 	

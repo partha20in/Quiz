@@ -36,16 +36,15 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
   Question q2;
   Question q3;
   Question q4;
+  Question q5;
   Set<Question> qs=new HashSet<Question>();
   Set<Answer> as=new HashSet<Answer>();
   Set<Answer> as1=new HashSet<Answer>();
   Set<Answer> as2=new HashSet<Answer>();
   Set<Answer> as3=new HashSet<Answer>();
+  Set<Answer> as4=new HashSet<Answer>();
   
-//  Player player;
-    
-//  List<Account> accounts= new ArrayList<Account>();
-//  
+  
   
   @Bean
   ApplicationRunner initItems(UserRepository userrepository,QuizRepository quizrepository,QuestionRepository questionrepository,AnswerRepository answerrepository,
@@ -53,16 +52,7 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     return args -> {
     	
     	
-//      Stream.of("abc@xyz.com")
-//            .forEach(email -> {
-//        	user.setUsername("abc");
-//        	user.setEmail(email);
-//        	user.setEnabled(true);
-//        	user.setPassword("abc");
-//        	
-//            userrepository.save(user);
-//            
-//          });
+
     	Answer a1=new Answer();
     	a1.setOrder(1);
     	a1.setText("Stockholm");
@@ -75,9 +65,14 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	a3.setOrder(3);
     	a3.setText("NewDelhi");
     	answerrepository.save(a3);
+    	Answer a13=new Answer();
+    	a13.setOrder(4);
+    	a13.setText("Oslo");
+    	answerrepository.save(a13);
     	as.add(a1);
     	as.add(a2);
     	as.add(a3);
+    	as.add(a13);
     	
     	Answer a4=new Answer();
     	a4.setOrder(1);
@@ -91,9 +86,14 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	a6.setOrder(3);
     	a6.setText("NewDelhi");
     	answerrepository.save(a6);
+    	Answer a16=new Answer();
+    	a16.setOrder(4);
+    	a16.setText("Oslo");
+    	answerrepository.save(a16);
     	as1.add(a4);
     	as1.add(a5);
     	as1.add(a6);
+    	as1.add(a16);
     	
     	Answer a7=new Answer();
     	a7.setOrder(1);
@@ -107,9 +107,14 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	a9.setOrder(3);
     	a9.setText("NewDelhi");
     	answerrepository.save(a9);
+    	Answer a19=new Answer();
+    	a19.setOrder(4);
+    	a19.setText("Oslo");
+    	answerrepository.save(a19);
     	as2.add(a7);
     	as2.add(a8);
     	as2.add(a9);
+    	as2.add(a19);
     	
     	Answer a10=new Answer();
     	a10.setOrder(1);
@@ -123,9 +128,35 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	a12.setOrder(3);
     	a12.setText("NewDelhi");
     	answerrepository.save(a12);
+    	Answer a122=new Answer();
+    	a122.setOrder(4);
+    	a122.setText("Oslo");
+    	answerrepository.save(a122);
     	as3.add(a10);
     	as3.add(a11);
     	as3.add(a12);
+    	as3.add(a122);
+    	
+    	Answer a20=new Answer();
+    	a20.setOrder(1);
+    	a20.setText("Paris");
+    	answerrepository.save(a20);
+    	Answer a21=new Answer();
+    	a21.setOrder(2);
+    	a21.setText("Copenhagen");
+    	answerrepository.save(a21);
+    	Answer a22=new Answer();
+    	a22.setOrder(3);
+    	a22.setText("NewDelhi");
+    	answerrepository.save(a22);
+    	Answer a23=new Answer();
+    	a23.setOrder(4);
+    	a23.setText("Oslo");
+    	answerrepository.save(a23);
+    	as4.add(a20);
+    	as4.add(a21);
+    	as4.add(a22);
+    	as4.add(a23);
     	
     	
     	q1=new Question();
@@ -149,10 +180,16 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	q4.setAnswers(as3);
     	q4.setText("What is Capital of Denmark");
     	questionrepository.save(q4);
+    	q5=new Question();
+    	q5.setOrder(5);
+    	q5.setAnswers(as4);
+    	q5.setText("What is Capital of Norway");
+    	questionrepository.save(q5);
     	qs.add(q1);
     	qs.add(q2);
     	qs.add(q3);
     	qs.add(q4);
+    	qs.add(q5);
     	
     	quiz=new Quiz();
     	quiz.setDescription("General Quiz");
@@ -169,14 +206,7 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	user.setCreatedDate(new Date());
     	userrepository.save(user);
     	
-//    	User user1=new User();
-//    	user1.setUsername("def");
-//    	user1.setEmail("def@xyz.com");
-//    	user1.setEnabled(true);
-//    	user1.setPassword("def");
-//    	//user1.setQuiz(quiz);
-//    	user1.setCreatedDate(new Date());
-//    	userrepository.save(user1);
+
     	
     	CorrectAnswer ans=new CorrectAnswer();
     	ans.setCreatedDate(new Date());
@@ -206,33 +236,17 @@ private static final Logger logger = LoggerFactory.getLogger(SkelApplication.cla
     	ans3.setCorrect("Copenhagen");
     	correctAnswerRepository.save(ans3);
     	
+    	CorrectAnswer ans4=new CorrectAnswer();
+    	ans4.setCreatedDate(new Date());
+    	ans4.setQuestion(q5);
+    	ans4.setUsername("abc");
+    	ans4.setCorrect("Oslo");
+    	correctAnswerRepository.save(ans4);
     	
     	
     	
-//      logger.info("Account info at start"+accounts);
-//      
-//      
-//      Stream.of("Player1", "Player2")
-//    .forEach((name) -> {
-//    	player=new Player();
-//    	player.setName(name);
-//    	player.setAge(18);
-//    	player.setGender(Gender.MALE);
-//    	if(name.equals("Player1")) {
-//    	player.setAccount(accounts.get(0));
-//    	}
-//    	else {
-//    	player.setAccount(accounts.get(1));
-//    	}
-//    	playerrepository.save(player);
-//    	
-//    });
-//     
-//
-//
-//    accountrepository.findAll().forEach(System.out::println);
-//    playerrepository.findAll().forEach(System.out::println);
-//    
+    	
+
   };
   }
 

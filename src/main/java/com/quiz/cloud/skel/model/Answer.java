@@ -56,15 +56,6 @@ public class Answer extends AbstractEntity implements Serializable{
 	}
 
 
-//	public Question getQuestion() {
-//		return question;
-//	}
-//
-//
-//	public void setQuestion(Question question) {
-//		this.question = question;
-//	}
-
 
 	public Integer getOrder() {
 		return order;

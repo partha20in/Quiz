@@ -55,13 +55,7 @@ public class Question extends AbstractEntity implements Serializable {
 	}
     
 	
-//	public Answer getCorrectAnswer() {
-//		return correctAnswer;
-//	}
-//
-//	public void setCorrectAnswer(Answer correctAnswer) {
-//		this.correctAnswer = correctAnswer;
-//	}
+
 
 	public Set<Answer> getAnswers() {
 		return answers;
