@@ -1,4 +1,4 @@
-# Wallet Spring Boot Application #
+# Quiz Spring Boot Application #
 
 ### Project Overview ###
 
